@@ -7,8 +7,8 @@ export const HomePage =()=>{
     const [catFacts,setCatFacts] = useState("Random cat facts appear here");
 
     const randomCatFacts=()=>{
-        axios.get("https://catfact.ninja/docs/api-docs.json").then((res)=>{
-            console.log(res.data);
+        axios.get("https://catfact.ninja/fact").then((res)=>{
+            setCatFacts(res.data.fact);
         })
     }
 
