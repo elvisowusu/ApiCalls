@@ -6,12 +6,18 @@ export const HomePage =()=>{
     const [name, setName] = useState(" ");
     const [catFacts,setCatFacts] = useState("Random cat facts appear here");
 
+    const randomCatFacts=()=>{
+        axios.get("https://catfact.ninja/docs/api-docs.json").then((res)=>{
+            console.log(res.data);
+        })
+    }
+
 
 
     return(
         <div className="main">
             <div className="GenerateCatFacts">
-              <button className="btn">Generate Cat Facts</button>
+              <button className="btn" onClick={randomCatFacts}>Generate Cat Facts</button>
               <p>{catFacts}</p>
             </div>
             <div className="PredictAge">
