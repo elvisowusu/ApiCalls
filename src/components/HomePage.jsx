@@ -3,8 +3,8 @@ import "../styles/HomePage.css"
 import axios from "axios";
 
 export const HomePage =()=>{
-    const [name, setName] = useState("");
-
+    const [name, setName] = useState(" ");
+    const [catFacts,setCatFacts] = useState("Random cat facts appear here");
 
 
 
@@ -12,7 +12,7 @@ export const HomePage =()=>{
         <div className="main">
             <div className="GenerateCatFacts">
               <button className="btn">Generate Cat Facts</button>
-              <p></p>
+              <p>{catFacts}</p>
             </div>
             <div className="PredictAge">
                 <label htmlFor="">Enter Name of the individual</label>
@@ -20,7 +20,7 @@ export const HomePage =()=>{
                   type="text" 
                   value={name}
                   onChange={(event)=>{
-                    setName(event.target.value)
+                    setName(event.target.value);
                   }}
                 />
                <button className="btn">Predict Age of {name}</button>
