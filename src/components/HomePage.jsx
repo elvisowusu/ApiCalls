@@ -5,7 +5,10 @@ import axios from "axios";
 export const HomePage =()=>{
   const [catFacts,setCatFacts] = useState("Random cat facts appear here");
   const [name, setName] = useState(" ");
+  const [nameStore, setNameStore] = useState("")
   const [age,setAge] = useState(0)
+  const [clicked,setClicked] = useState(false);
+  const [error,setError] = useState("")
 
     //function to fetch the data from the random cat facts API
     const randomCatFacts=()=>{
@@ -17,8 +20,18 @@ export const HomePage =()=>{
     //function to fetch the data from the Predict Age API 
     const predictAge =()=>{
       axios.get(`https://api.agify.io/?name=${name}`).then((response)=>{
-       console.log(response.data.age);
+       setAge(response.data.age);
       });
+      setClicked(true);
+      setNameStore(name);
+      setName("");
+    }
+    const errorMessage =()=>{
+      if (!setName("")){
+        predictAge();
+      }else{
+        setError("Enter name to proceed");
+      }
     }
   
 
@@ -39,7 +52,7 @@ export const HomePage =()=>{
                   }}
                 />
                <button className="btn" onClick={predictAge}>Predict Age of {name}</button>
-               <h3>The predicted age of {name} is {age}</h3>
+               {clicked?<h3>The predicted age of {nameStore} is {age}</h3>:""}
             </div>
         </div>
     )
